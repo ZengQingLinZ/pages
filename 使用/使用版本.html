@@ -1,0 +1,656 @@
+
+<!--controls-->
+<audio  autoplay="autoplay" loop>
+  <source src="后来.mp3" type="audio/mpeg">
+
+</audio>
+
+<meta charset="UTF-8" />
+<body background="/Users/zengqinglin/Desktop/XiangMuUI/html/使用/IMG_5079.jpg" style="background-repeat:no-repeat;background-size:100% 100%;">
+    <div style="color:#FF0000;" text-align=left>
+        
+<!--        <center>-->
+            <h1 >福利商品推荐点击下方小黄车：</h1>
+            <h2>1毛到5毛,1元福利秒杀包邮物所超值,小杨哥推荐好物分享,限时购买～（亏本冲量）<br>
+            精选零食，垃圾袋、耳机手机壳，洗衣液，水杯，帽子，纸巾等生活用品.<br>
+            价格比快递费还低，别错过薅羊毛机会,优惠商品随时下架！有需要的拍,一单也发货,能拍就能发.<br>
+            想做直播，互粉弹幕扣666，看到就互关！（1000粉丝可直播，可以开通橱窗）<br>
+            需要什么商品或有问题直播没回复就私信一下。</h2>
+<!--        </center>-->
+    </div>
+    
+</body>
+
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
+    <style>
+        html{
+            background: #FFF;
+            color: rgba(220, 38, 38, 0.4);
+            font-size: 12px;
+            overflow:hidden;
+            
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        span{
+            display: block;
+            float: left;
+        }
+        .on{
+            color: #FF0000;
+        }
+        .wrapper{
+            width: 4px;
+            height: 200px;
+            position: absolute;
+            left:50%;
+            top:50%;
+            margin-top: -50px;
+            margin-left: -100px;
+        }
+        .wrapper .timebox{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 0;
+            left:0;
+            border-radius: 100%;
+            transition: all 0.5s;
+        }
+        .timebox span{
+            transition: all 0.5s;
+            float: left;
+            
+            font-size: 17px;
+            fo
+        }
+        .wrapper  .timebox span{
+            position: absolute;
+            left:50%;
+            top:50%;
+            width: 40px;
+            height: 18px;
+            margin-top: -9px;
+            margin-left: -20px;
+            text-align: right;
+        }
+ 
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <div class="timebox monthbox" id="monthBox"></div>
+    <div class="timebox dateBox" id="dateBox"></div>
+    <div class="timebox hourbox" id="hourbox"></div>
+    <div class="timebox minutebox" id="minutebox"></div>
+    <div class="timebox secondbox" id="secondbox"></div>
+</div>
+
+<script>
+    let wrapper = document.getElementById("wrapper");
+    let monthBox = document.getElementById("monthBox");
+    let dateBox = document.getElementById("dateBox");
+    let hourbox = document.getElementById("hourbox");
+    let minutebox = document.getElementById("minutebox");
+    let secondbox = document.getElementById("secondbox");
+ 
+    /*
+    * 找所有的东西标签函数
+    * */
+    let findSiblings = ( tag ) => {
+        let parent = tag.parentNode;
+        let childs = parent.children;
+        let sb = [];
+        for(let i=0 ; i <= childs.length-1 ; i++){
+            if( childs[i]!==tag){
+                sb[sb.length] = childs[i];
+            }
+        };
+        return  sb ;
+    };
+ 
+    /*
+    * 去掉所有兄弟的类
+    * */
+    let removeSiblingClass = ( tag ) => {
+        let sb = findSiblings( tag );
+        for(let i=0 ;  i <= sb.length-1 ; i++){
+            sb[i].className = "";
+        }
+    };
+ 
+    /*
+    * 初始化月份函数
+    * */
+    let initMonth = () => {
+      for(let i=1; i<=12; i++){
+            let span = document.createElement("span");
+            span.innerHTML = i+"月";
+            monthBox.appendChild( span );
+      }
+    };
+ 
+    // 初始化日期
+    let initDate = () => {
+        for(let i=1; i<=31; i++){
+            let span = document.createElement("span");
+            span.innerHTML = i+"日";
+            dateBox.appendChild( span );
+        }
+    };
+ 
+    // 初始化小时，分钟，秒
+    let initHour = () => {
+        for(let i=0; i<=23; i++){
+            let h = i ;
+            let span = document.createElement("span");
+            if( h<10){
+                h="0"+h;
+            }
+            span.innerHTML = h +"点";
+            hourbox.appendChild( span );
+        }
+    };
+    let initMinute = () => {
+        for(let i=0; i<=59; i++){
+            let  f = i ;
+            let span = document.createElement("span");
+            if( f<10){
+                f="0"+f;
+            }
+            span.innerHTML = f +"分";
+            minutebox.appendChild( span );
+        }
+    };
+    let initSecond = () => {
+        for(let i=0; i<=59; i++){
+            let  miao = i ;
+            let span = document.createElement("span");
+            if( miao<10){
+                miao="0"+miao;
+            }
+            span.innerHTML = miao +"秒";
+            secondbox.appendChild( span );
+        }
+    };
+ 
+    // 时间文字样式切换函数
+    let changeTime = (tag) => {
+        tag.className = "on";
+        removeSiblingClass( tag );
+    };
+ 
+    /*
+    * 初始化日历函数
+    * */
+    let initRili = () => {
+        initMonth(); // 初始化月份
+        initDate(); // 初始化日期
+        initHour(); // 小时
+        initMinute();
+        initSecond();
+    };
+ 
+    /*
+    * 展示当前时间
+    * 参数：mydate 时间对象
+    * */
+    let showNow = ( mydate ) => {
+ 
+        let month = mydate.getMonth() ;
+        let date = mydate.getDate();
+        let hour = mydate.getHours()  ;
+        let minute = mydate.getMinutes();
+        let second = mydate.getSeconds();
+        // 时间文字样式切换函数
+        changeTime( monthBox.children[month] );
+        changeTime( dateBox.children[date-1] );
+        changeTime( hourbox.children[hour] );
+        changeTime( minutebox.children[minute] );
+        changeTime( secondbox.children[second] );
+ 
+    };
+ 
+    // 展示时间圆圈函数
+    // tag：目标
+    // num：数字数量
+    // dis：圆圈半径
+    let textRound = (tag,num,dis) => {
+        let span = tag.children ;
+        for(let i=0 ; i<=span.length-1; i++){
+            span[i].style.transform="rotate("+ (360/span.length)*i+"deg)  translateX("+dis+"px)" ;
+        }
+    };
+    /*
+    * 旋转指定“圆圈”指定度数
+    * */
+    let rotateTag = (tag , deg) => {
+        tag.style.transform = "rotate("+deg+"deg)";
+    };
+ 
+    let timeRun = () => {
+        initRili(); // 初始化日历
+ 
+        setInterval(() => {
+            let mydate = new Date();
+            showNow( mydate ); // 展示当前时间
+        },1000);
+ 
+        //  n秒后，摆出圆形
+        setTimeout(() => {
+            wrapper.className = "wrapper";
+            textRound(monthBox,12,40);
+            textRound(dateBox,31,80);
+            textRound(hourbox,24,120);
+            textRound(minutebox,60,160);
+            textRound(secondbox,60,200);
+            setInterval(() => {
+                let mydate = new Date();
+                rotateTag( monthBox , -30*mydate.getMonth());
+                rotateTag( dateBox , -360/31*(mydate.getDate()-1) );
+                rotateTag( hourbox , -360/24*mydate.getHours());
+                rotateTag( minutebox , -6*mydate.getMinutes());
+                rotateTag( secondbox , -6*mydate.getSeconds());
+            },1000)
+        },0)
+    };
+    timeRun();
+</script>
+ 
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!---->
+<!--<!doctype html>-->
+<!--<html>-->
+<!--    <head>-->
+<!--        <meta charset="utf-8"/>-->
+<!--        <title>相册</title>-->
+<!--        <style>-->
+<!--        body-->
+<!--            {-->
+<!--                margin:0;-->
+<!--                background:red;-->
+<!--            }-->
+<!--        #wrap-->
+<!--            {-->
+<!--                width:300px;-->
+<!--                height:400px;-->
+<!--                position: relative;-->
+<!--                margin: 300px auto;-->
+<!--                -webkit-perspective:3000px;-->
+<!--                -moz-perspective:3000px;-->
+<!--                -ms-transform:perspective(3000px);-->
+<!--                -ms-perspective:3000px;-->
+<!--            }-->
+<!--        #head-->
+<!--            {-->
+<!--                width:100%;-->
+<!--                height:100%;-->
+<!--                position: absolute;-->
+<!--                -webkit-transform-style: preserve-3d;-->
+<!--                -webkit-animation:donghua 15s linear 0s infinite;-->
+<!--                -moz-transform-style: preserve-3d;-->
+<!--                -moz-animation:donghua 15s linear 0s infinite;-->
+<!--                -ms-transform-style: preserve-3d;-->
+<!--                -ms-animation:donghua 25s linear 0s infinite;-->
+<!--            }-->
+<!--        #head div-->
+<!--            {-->
+<!--                position: absolute;-->
+<!--                top:0;-->
+<!--                left:0;-->
+<!--                width:300px;-->
+<!--                height:400px;-->
+<!--                border:1px solid #000-->
+<!--                text-align: center;-->
+<!--                line-height:100px;-->
+<!--            }-->
+<!--        #head div:nth-child(1)-->
+<!--            {-->
+<!--                -webkit-transform:rotateY(0deg) translateZ(400px);-->
+<!--                -moz-transform:rotateY(0deg) translateZ(400px);-->
+<!--                -ms-transform:rotateY(0deg) translateZ(400px);-->
+<!--                background:url(images/01.png);-->
+<!--                background-size:cover;-->
+<!--            }-->
+<!--        #head div:nth-child(2)-->
+<!--            {-->
+<!--                -webkit-transform:rotateY(36deg) translateZ(500px);-->
+<!--                -moz-transform:rotateY(36deg) translateZ(500px);-->
+<!--                -ms-transform:rotateY(36deg) translateZ(500px);-->
+<!--                background:url(images/02.png);-->
+<!--                background-size:cover;-->
+<!--            }-->
+<!--            -->
+<!--        #head div:nth-child(3)-->
+<!--            {-->
+<!--                -webkit-transform:rotateY(72deg) translateZ(400px);-->
+<!--                -moz-transform:rotateY(72deg) translateZ(400px);-->
+<!--                -ms-transform:rotateY(72deg) translateZ(400px);-->
+<!--                background:url(images/03.png);-->
+<!--                background-size:cover;-->
+<!--            }-->
+<!--            -->
+<!--        #head div:nth-child(4)-->
+<!--            {-->
+<!--                -webkit-transform:rotateY(108deg) translateZ(500px);-->
+<!--                -moz-transform:rotateY(108deg) translateZ(500px);-->
+<!--                -ms-transform:rotateY(108deg) translateZ(500px);-->
+<!--                background:url(images/04.png);-->
+<!--                background-size:cover;-->
+<!--            }-->
+<!--        #head div:nth-child(5)-->
+<!--            {-->
+<!--                -webkit-transform:rotateY(144deg) translateZ(400px);-->
+<!--                -moz-transform:rotateY(144deg) translateZ(400px);-->
+<!--                -ms-transform:rotateY(144deg) translateZ(400px);-->
+<!--                background:url(images/05.png);-->
+<!--                background-size:cover;-->
+<!--            }-->
+<!--        #head div:nth-child(6)-->
+<!--            {-->
+<!--                -webkit-transform:rotateY(180deg) translateZ(500px);-->
+<!--                -moz-transform:rotateY(180deg) translateZ(500px);-->
+<!--                -ms-transform:rotateY(180deg) translateZ(500px);-->
+<!--                background:url(images/06.png);-->
+<!--                background-size:cover;-->
+<!--            }-->
+<!--        #head div:nth-child(7)-->
+<!--            {-->
+<!--                -webkit-transform:rotateY(216deg) translateZ(400px);-->
+<!--                -moz-transform:rotateY(216deg) translateZ(400px);-->
+<!--                -ms-transform:rotateY(216deg) translateZ(400px);-->
+<!--                background:url(images/07.png);-->
+<!--                background-size:cover;-->
+<!--            }-->
+<!--        #head div:nth-child(8)-->
+<!--            {-->
+<!--                -webkit-transform:rotateY(252deg) translateZ(500px);-->
+<!--                -moz-transform:rotateY(252deg) translateZ(500px);-->
+<!--                -ms-transform:rotateY(252deg) translateZ(500px);-->
+<!--                background:url(images/08.png);-->
+<!--                background-size:cover;-->
+<!--            }-->
+<!--        #head div:nth-child(9)-->
+<!--            {-->
+<!--                -webkit-transform:rotateY(288deg) translateZ(400px);-->
+<!--                -moz-transform:rotateY(288deg) translateZ(400px);-->
+<!--                -ms-transform:rotateY(288deg) translateZ(400px);-->
+<!--                background:url(images/09.png);-->
+<!--                background-size:cover;-->
+<!--            }-->
+<!--        #head div:nth-child(10)-->
+<!--            {-->
+<!--                -webkit-transform:rotateY(324deg) translateZ(500px);-->
+<!--                -moz-transform:rotateY(324deg) translateZ(500px);-->
+<!--                -ms-transform:rotateY(324deg) translateZ(500px);-->
+<!--                background:url(images/10.png);-->
+<!--                background-size:cover;-->
+<!--            }-->
+<!--        @-webkit-keyframes donghua{-->
+<!--            0%{transform:rotateX(5deg) rotateY(360deg)}-->
+<!--            50%{transform:rotateX(-5deg) rotateY(180deg)}-->
+<!--            100%{transform:rotateX(5deg) rotateY(0deg)}-->
+<!--        }-->
+<!--        @-moz-keyframes donghua{-->
+<!--            0%{transform:rotateY(10deg) rotateY(0deg)}-->
+<!--            50%{transform:rotateY(-10deg) rotateY(180deg)}-->
+<!--            100%{transform:rotateY(10deg) rotateY(360deg)}-->
+<!--        }-->
+<!--        @-ms-keyframes donghua{-->
+<!--            0%{transform:rotateY(10deg) rotateY(0deg)}-->
+<!--            50%{transform:rotateY(-10deg) rotateY(180deg)}-->
+<!--            100%{transform:rotateY(10deg) rotateY(360deg)}-->
+<!--        }-->
+<!--        </style>-->
+<!--    </head>-->
+<!--    <body>-->
+<!--        <div id="wrap">-->
+<!--            <div id="head">-->
+<!--                <div></div>-->
+<!--                <div></div>-->
+<!--                <div></div>-->
+<!--                <div></div>-->
+<!--                <div></div>-->
+<!--                <div></div>-->
+<!--                <div></div>-->
+<!--                <div></div>-->
+<!--                <div></div>-->
+<!--                <div></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </body>-->
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>流星雨</title>-->
+<!--    <script>-->
+<!--        var context;-->
+<!--        var arr = new Array();-->
+<!--        var starCount = 800;-->
+<!--        var rains = new Array();-->
+<!--        var rainCount = 20;-->
+<!-- -->
+<!--        function init() {-->
+<!--            var stars = document.getElementById("stars");-->
+<!--            windowWidth = window.innerWidth; //当前的窗口的高度-->
+<!--            stars.width = windowWidth;-->
+<!--            stars.height = window.innerHeight;-->
+<!--            context = stars.getContext("2d");-->
+<!--        }-->
+<!-- -->
+<!--        //创建一个星星对象-->
+<!--        var Star = function () {-->
+<!--            this.x = windowWidth * Math.random();//横坐标-->
+<!--            this.y = 5000 * Math.random();//纵坐标-->
+<!--            this.text = ".";//文本-->
+<!--            this.color = "#fff";//颜色-->
+<!--            this.getColor = function () {-->
+<!--                var _r = Math.random();-->
+<!--                if (_r < 0.5) {-->
+<!--                    this.color = "#333";-->
+<!--                } else {-->
+<!--                    this.color = "#fff";-->
+<!--                }-->
+<!--            }-->
+<!--//初始化-->
+<!--            this.init = function () {-->
+<!--                this.getColor();-->
+<!--            }-->
+<!--//绘制-->
+<!--            this.draw = function () {-->
+<!--                context.fillStyle = this.color;-->
+<!--                context.fillText(this.text, this.x, this.y);-->
+<!--            }-->
+<!--        }-->
+<!-- -->
+<!--        //画月亮-->
+<!--        function drawMoon() {-->
+<!--            var moon = new Image();-->
+<!--            moon.src = "./images/moon.jpg"-->
+<!--            context.drawImage(moon, -5, -10);-->
+<!--        }-->
+<!-- -->
+<!--        //页面加载的时候-->
+<!--        window.onload = function () {-->
+<!--            init();-->
+<!--//画星星-->
+<!--            for (var i = 0; i < starCount; i++) {-->
+<!--                var star = new Star();-->
+<!--                star.init();-->
+<!--                star.draw();-->
+<!--                arr.push(star);-->
+<!--            }-->
+<!--//画流星-->
+<!--            for (var i = 0; i < rainCount; i++) {-->
+<!--                var rain = new MeteorRain();-->
+<!--                rain.init();-->
+<!--                rain.draw();-->
+<!--                rains.push(rain);-->
+<!--            }-->
+<!--            drawMoon();//绘制月亮-->
+<!--            playStars();//绘制闪动的星星-->
+<!--            playRains();//绘制流星-->
+<!-- -->
+<!--        }-->
+<!-- -->
+<!--        //星星闪起来-->
+<!--        function playStars() {-->
+<!--            for (var n = 0; n < starCount; n++) {-->
+<!--                arr[n].getColor();-->
+<!--                arr[n].draw();-->
+<!--            }-->
+<!-- -->
+<!--            setTimeout("playStars()", 100);-->
+<!--        }-->
+<!-- -->
+<!--        /*流星雨开始*/-->
+<!--        var MeteorRain = function () {-->
+<!--            this.x = -1;-->
+<!--            this.y = -1;-->
+<!--            this.length = -1;//长度-->
+<!--            this.angle = 30; //倾斜角度-->
+<!--            this.width = -1;//宽度-->
+<!--            this.height = -1;//高度-->
+<!--            this.speed = 1;//速度-->
+<!--            this.offset_x = -1;//横轴移动偏移量-->
+<!--            this.offset_y = -1;//纵轴移动偏移量-->
+<!--            this.alpha = 1; //透明度-->
+<!--            this.color1 = "";//流星的色彩-->
+<!--            this.color2 = ""; //流星的色彩-->
+<!--            /****************初始化函数********************/-->
+<!--            this.init = function () //初始化-->
+<!--            {-->
+<!--                this.getPos();-->
+<!--                this.alpha = 1;//透明度-->
+<!--                this.getRandomColor();-->
+<!--//最小长度，最大长度-->
+<!--                var x = Math.random() * 80 + 150;-->
+<!--                this.length = Math.ceil(x);-->
+<!--// x = Math.random()*10+30;-->
+<!--                this.angle = 30; //流星倾斜角-->
+<!--                x = Math.random() + 0.5;-->
+<!--                this.speed = Math.ceil(x); //流星的速度-->
+<!--                var cos = Math.cos(this.angle * 3.14 / 180);-->
+<!--                var sin = Math.sin(this.angle * 3.14 / 180);-->
+<!--                this.width = this.length * cos; //流星所占宽度-->
+<!--                this.height = this.length * sin;//流星所占高度-->
+<!--                this.offset_x = this.speed * cos;-->
+<!--                this.offset_y = this.speed * sin;-->
+<!--            }-->
+<!--            /**************获取随机颜色函数*****************/-->
+<!--            this.getRandomColor = function () {-->
+<!--                var a = Math.ceil(255 - 240 * Math.random());-->
+<!--//中段颜色-->
+<!--                this.color1 = "rgba(" + a + "," + a + "," + a + ",1)";-->
+<!--//结束颜色-->
+<!--                this.color2 = "black";-->
+<!--            }-->
+<!--            /***************重新计算流星坐标的函数******************/-->
+<!--            this.countPos = function ()//-->
+<!--            {-->
+<!--//往左下移动,x减少，y增加-->
+<!--                this.x = this.x - this.offset_x;-->
+<!--                this.y = this.y + this.offset_y;-->
+<!--            }-->
+<!--            /*****************获取随机坐标的函数*****************/-->
+<!--            this.getPos = function () //-->
+<!--            {-->
+<!--//横坐标200--1200-->
+<!--                this.x = Math.random() * window.innerWidth; //窗口高度-->
+<!--//纵坐标小于600-->
+<!--                this.y = Math.random() * window.innerHeight; //窗口宽度-->
+<!--            }-->
+<!--            /****绘制流星***************************/-->
+<!--            this.draw = function () //绘制一个流星的函数-->
+<!--            {-->
+<!--                context.save();-->
+<!--                context.beginPath();-->
+<!--                context.lineWidth = 1; //宽度-->
+<!--                context.globalAlpha = this.alpha; //设置透明度-->
+<!--//创建横向渐变颜色,起点坐标至终点坐标-->
+<!--                var line = context.createLinearGradient(this.x, this.y,-->
+<!--                    this.x + this.width,-->
+<!--                    this.y - this.height);-->
+<!--//分段设置颜色-->
+<!--                line.addColorStop(0, "white");-->
+<!--                line.addColorStop(0.3, this.color1);-->
+<!--                line.addColorStop(0.6, this.color2);-->
+<!--                context.strokeStyle = line;-->
+<!--//起点-->
+<!--                context.moveTo(this.x, this.y);-->
+<!--//终点-->
+<!--                context.lineTo(this.x + this.width, this.y - this.height);-->
+<!--                context.closePath();-->
+<!--                context.stroke();-->
+<!--                context.restore();-->
+<!--            }-->
+<!--            this.move = function () {-->
+<!--//清空流星像素-->
+<!--                var x = this.x + this.width - this.offset_x;-->
+<!--                var y = this.y - this.height;-->
+<!--                context.clearRect(x - 3, y - 3, this.offset_x + 5, this.offset_y + 5);-->
+<!--// context.strokeStyle="red";-->
+<!--// context.strokeRect(x,y-1,this.offset_x+1,this.offset_y+1);-->
+<!--//重新计算位置，往左下移动-->
+<!--                this.countPos();-->
+<!--//透明度增加-->
+<!--                this.alpha -= 0.002;-->
+<!--//重绘-->
+<!--                this.draw();-->
+<!--            }-->
+<!--        }-->
+<!-- -->
+<!--        //绘制流星-->
+<!--        function playRains() {-->
+<!-- -->
+<!--            for (var n = 0; n < rainCount; n++) {-->
+<!--                var rain = rains[n];-->
+<!--                rain.move();//移动-->
+<!--                if (rain.y > window.innerHeight) {//超出界限后重来-->
+<!--                    context.clearRect(rain.x, rain.y - rain.height, rain.width, rain.height);-->
+<!--                    rains[n] = new MeteorRain();-->
+<!--                    rains[n].init();-->
+<!--                }-->
+<!--            }-->
+<!--            setTimeout("playRains()", 2);-->
+<!--        }-->
+<!-- -->
+<!--        /*流星雨结束*/-->
+<!--        /*刘博*/-->
+<!--    </script>-->
+<!--    <style type="text/css">-->
+<!--        body {-->
+<!--            background-color: yellow;-->
+<!--        }-->
+<!-- -->
+<!--        body, html {-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            overflow: hidden;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<canvas id="stars"></canvas>-->
+ 
