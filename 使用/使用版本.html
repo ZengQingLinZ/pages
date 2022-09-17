@@ -1,364 +1,382 @@
 <html>
 
-    <script>
-        function copyText()
-        {
-            if(document.getElementById("field1").paused){
-                document.getElementById("field1").play();
-                document.getElementById("field2").volume = 0.2;
-            }else{
-                document.getElementById("field1").pause();
-                document.getElementById("field2").volume = 1;
-            }
-
-            // if(document.getElementById("field2").paused){
-            //     document.getElementById("field2").play();
-            // }else{
-            //     document.getElementById("field2").pause();
-            // }
-
-        }
-
-    
-        
-    </script>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <style>
-    body{
-        background-repeat:no-repeat;
-        background-size:100% 100%;
-        /* 图片可更改 */
-        background: url(/pages/使用/IMG_5079.jpg);
-        /*从父元素继承属性的设置*/
-
-    }
-</style>
-
-<!--<img class="article-type-img" src="/pages/使用/IMG_5079.jpg" alt="">-->
-
-<!-- controls autoplay="autoplay" -->
-<audio id="field1"  loop  preload="auto">
-  <source src="/pages/使用/讲解.mp3">
-  <!-- <source src="讲解.mp3" type="audio/mpeg"> -->
-</audio>
-
-<!-- loop -->
-<audio id="field2"    preload="auto" autoplay>
-    <!-- <source src="/pages/使用/后来.mp3">
-    <source src="后来.mp3" type="audio/mpeg"> -->
- </audio>
-
- <script type="text/javascript">
- debugger;
-                var vList = [ 
-                '/pages/使用/泡沫(说唱版) - 小猫多鱼.mp3',
-                '/pages/使用/Dear John - 比莉.mp3',
-                '/pages/使用/nuofa.mp3',
-                '/pages/使用/后来.mp3']; 
-                // var vList = [ '后来.mp3', 'nuofa.mp3' ];// 初始化播放列表 var
-                vLen = vList.length; // 播放列表的长度
-                var curr = 0; // 当前播放的视频 
-                var audio = document.getElementById("field2");
-                audio.addEventListener('ended', play);
-                play();
-                function play() {
-
-                    audio.src = vList[curr];
-                    audio.load(); //如果短的话，可以加载完成之后再播放，监听 canplaythrough 事件即可
-                    audio.play();
-                    curr++;
-                    if (curr >= vLen)
-                        curr = 0; // 播放完了，重新播放
-                }
-
-        function copyText2()
-        {
-            if(document.getElementById("field2").paused){
-                play()
-               
-            }else{
-                document.getElementById("field2").pause();
-            }
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            /* 图片可更改 */
+            background: url(/pages/使用/IMG_5079.jpg);
+            /*从父元素继承属性的设置*/
 
         }
-</script>
+    </style>
 
-<meta charset="UTF-8" />
 
-<!--<img class="article-type-img" src="//zengqinglinz.github.io/pages/使用/IMG_5079.jpg" alt="" style="background-repeat:no-repeat;background-size:100% 100%;">-->
+    <meta charset="UTF-8" />
 
-<!-- style="background-img: url(https://zengqinglinz.github.io/pages/使用/IMG_5079.jpg) background-repeat:no-repeat;background-size:100% 100%;" -->
+    <!--<img class="article-type-img" src="//zengqinglinz.github.io/pages/使用/IMG_5079.jpg" alt="" style="background-repeat:no-repeat;background-size:100% 100%;">-->
 
-<body >
+    <!-- style="background-img: url(https://zengqinglinz.github.io/pages/使用/IMG_5079.jpg) background-repeat:no-repeat;background-size:100% 100%;" -->
+
+<body>
     <div style="color:#ff0044;" text-align=left; margin-left=20px;>
-        
-<!--        <center>-->
-            <h1 onclick="copyText()" align="center">福利商品推荐点击下方小黄车：</h1>
-            <h1 style="color:#FF0000;"  align="center" onclick="copyText2()">【0.01元~1元】</h1>
-            <h2>福利秒杀包邮物所超值,小杨哥推荐好物分享,限时购买～（亏本冲量）<br>
+
+        <!--        <center>-->
+        <h1 onclick="copyText()" align="center">福利商品推荐点击下方小黄车：</h1>
+        <h1 style="color:#FF0000;" align="center" onclick="copyText2()">【0.01元~1元】</h1>
+        <h2>福利秒杀包邮物所超值,小杨哥推荐好物分享,限时购买～（亏本冲量）<br>
             一人只能拍一单,库存有限,能拍就能发~<br>
             互粉弹幕扣666,看到就互关~（1000粉丝可开通橱窗直播）<br>
             需要什么商品或有问题直播没回复就私信~ 1.1</h2>
-<!--        </center>-->
+        <!--        </center>-->
     </div>
-    
+
 
 </body>
 </head>
+
 </html>
 
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clock</title>
     <style>
-        html{
+        html {
             background: #FFF;
             color: rgba(79, 233, 13, 0.5);
             font-size: 12px;
-            overflow:hidden;
-            
+            overflow: hidden;
+
         }
-        *{
+
+        * {
             margin: 0;
             padding: 0;
         }
-        span{
+
+        span {
             display: block;
             float: left;
         }
-        .on{
+
+        .on {
             color: #FF0000;
         }
-        .wrapper{
+
+        .wrapper {
             width: 4px;
             height: 200px;
             position: absolute;
-            left:50%;
+            left: 50%;
             /* top:10%; */
-            bottom:13%;
+            bottom: 13%;
             /* margin-top: 100px; */
             margin-left: -100px;
             /* margin-bottom: 0px; */
         }
-        .wrapper .timebox{
+
+        .wrapper .timebox {
             position: absolute;
             width: 200px;
             height: 200px;
             top: 0;
-            left:0;
+            left: 0;
             border-radius: 100%;
             transition: all 0.5s;
         }
-        .timebox span{
+
+        .timebox span {
             transition: all 0.5s;
             float: left;
-            
+
             font-size: 17px;
-            
+
         }
-        .wrapper  .timebox span{
+
+        .wrapper .timebox span {
             position: absolute;
-            left:50%;
-            top:50%;
+            left: 50%;
+            top: 50%;
             width: 40px;
             height: 18px;
             margin-top: -9px;
             margin-left: -20px;
             text-align: center;
         }
- 
     </style>
 </head>
-<body>
-<div id="wrapper">
-    <div class="timebox monthbox" id="monthBox"></div>
-    <div class="timebox dateBox" id="dateBox"></div>
-    <div class="timebox hourbox" id="hourbox"></div>
-    <div class="timebox minutebox" id="minutebox"></div>
-    <div class="timebox secondbox" id="secondbox"></div>
-</div>
 
-<script>
-    let wrapper = document.getElementById("wrapper");
-    let monthBox = document.getElementById("monthBox");
-    let dateBox = document.getElementById("dateBox");
-    let hourbox = document.getElementById("hourbox");
-    let minutebox = document.getElementById("minutebox");
-    let secondbox = document.getElementById("secondbox");
- 
-    /*
-    * 找所有的东西标签函数
-    * */
-    let findSiblings = ( tag ) => {
-        let parent = tag.parentNode;
-        let childs = parent.children;
-        let sb = [];
-        for(let i=0 ; i <= childs.length-1 ; i++){
-            if( childs[i]!==tag){
-                sb[sb.length] = childs[i];
+<body>
+    <div id="wrapper">
+        <div class="timebox monthbox" id="monthBox"></div>
+        <div class="timebox dateBox" id="dateBox"></div>
+        <div class="timebox hourbox" id="hourbox"></div>
+        <div class="timebox minutebox" id="minutebox"></div>
+        <div class="timebox secondbox" id="secondbox"></div>
+    </div>
+
+    <script>
+        let wrapper = document.getElementById("wrapper");
+        let monthBox = document.getElementById("monthBox");
+        let dateBox = document.getElementById("dateBox");
+        let hourbox = document.getElementById("hourbox");
+        let minutebox = document.getElementById("minutebox");
+        let secondbox = document.getElementById("secondbox");
+
+        /*
+        * 找所有的东西标签函数
+        * */
+        let findSiblings = (tag) => {
+            let parent = tag.parentNode;
+            let childs = parent.children;
+            let sb = [];
+            for (let i = 0; i <= childs.length - 1; i++) {
+                if (childs[i] !== tag) {
+                    sb[sb.length] = childs[i];
+                }
+            };
+            return sb;
+        };
+
+        /*
+        * 去掉所有兄弟的类
+        * */
+        let removeSiblingClass = (tag) => {
+            let sb = findSiblings(tag);
+            for (let i = 0; i <= sb.length - 1; i++) {
+                sb[i].className = "";
             }
         };
-        return  sb ;
-    };
- 
-    /*
-    * 去掉所有兄弟的类
-    * */
-    let removeSiblingClass = ( tag ) => {
-        let sb = findSiblings( tag );
-        for(let i=0 ;  i <= sb.length-1 ; i++){
-            sb[i].className = "";
-        }
-    };
- 
-    /*
-    * 初始化月份函数
-    * */
-    let initMonth = () => {
-      for(let i=1; i<=12; i++){
-            let span = document.createElement("span");
-            span.innerHTML = i+"月";
-            monthBox.appendChild( span );
-      }
-    };
- 
-    // 初始化日期
-    let initDate = () => {
-        for(let i=1; i<=31; i++){
-            let span = document.createElement("span");
-            span.innerHTML = i+"日";
-            dateBox.appendChild( span );
-        }
-    };
- 
-    // 初始化小时，分钟，秒
-    let initHour = () => {
-        for(let i=0; i<=23; i++){
-            let h = i ;
-            let span = document.createElement("span");
-            if( h<10){
-                h="0"+h;
+
+        /*
+        * 初始化月份函数
+        * */
+        let initMonth = () => {
+            for (let i = 1; i <= 12; i++) {
+                let span = document.createElement("span");
+                span.innerHTML = i + "月";
+                monthBox.appendChild(span);
             }
-            span.innerHTML = h +"点";
-            hourbox.appendChild( span );
-        }
-    };
-    let initMinute = () => {
-        for(let i=0; i<=59; i++){
-            let  f = i ;
-            let span = document.createElement("span");
-            if( f<10){
-                f="0"+f;
+        };
+
+        // 初始化日期
+        let initDate = () => {
+            for (let i = 1; i <= 31; i++) {
+                let span = document.createElement("span");
+                span.innerHTML = i + "日";
+                dateBox.appendChild(span);
             }
-            span.innerHTML = f +"分";
-            minutebox.appendChild( span );
-        }
-    };
-    let initSecond = () => {
-        for(let i=0; i<=59; i++){
-            let  miao = i ;
-            let span = document.createElement("span");
-            if( miao<10){
-                miao="0"+miao;
+        };
+
+        // 初始化小时，分钟，秒
+        let initHour = () => {
+            for (let i = 0; i <= 23; i++) {
+                let h = i;
+                let span = document.createElement("span");
+                if (h < 10) {
+                    h = "0" + h;
+                }
+                span.innerHTML = h + "点";
+                hourbox.appendChild(span);
             }
-            span.innerHTML = miao +"秒";
-            secondbox.appendChild( span );
-        }
-    };
- 
-    // 时间文字样式切换函数
-    let changeTime = (tag) => {
-        tag.className = "on";
-        removeSiblingClass( tag );
-    };
- 
-    /*
-    * 初始化日历函数
-    * */
-    let initRili = () => {
-        initMonth(); // 初始化月份
-        initDate(); // 初始化日期
-        initHour(); // 小时
-        initMinute();
-        initSecond();
-    };
- 
-    /*
-    * 展示当前时间
-    * 参数：mydate 时间对象
-    * */
-    let showNow = ( mydate ) => {
- 
-        let month = mydate.getMonth() ;
-        let date = mydate.getDate();
-        let hour = mydate.getHours()  ;
-        let minute = mydate.getMinutes();
-        let second = mydate.getSeconds();
+        };
+        let initMinute = () => {
+            for (let i = 0; i <= 59; i++) {
+                let f = i;
+                let span = document.createElement("span");
+                if (f < 10) {
+                    f = "0" + f;
+                }
+                span.innerHTML = f + "分";
+                minutebox.appendChild(span);
+            }
+        };
+        let initSecond = () => {
+            for (let i = 0; i <= 59; i++) {
+                let miao = i;
+                let span = document.createElement("span");
+                if (miao < 10) {
+                    miao = "0" + miao;
+                }
+                span.innerHTML = miao + "秒";
+                secondbox.appendChild(span);
+            }
+        };
+
         // 时间文字样式切换函数
-        changeTime( monthBox.children[month] );
-        changeTime( dateBox.children[date-1] );
-        changeTime( hourbox.children[hour] );
-        changeTime( minutebox.children[minute] );
-        changeTime( secondbox.children[second] );
- 
-    };
- 
-    // 展示时间圆圈函数
-    // tag：目标
-    // num：数字数量
-    // dis：圆圈半径
-    let textRound = (tag,num,dis) => {
-        let span = tag.children ;
-        for(let i=0 ; i<=span.length-1; i++){
-            span[i].style.transform="rotate("+ (360/span.length)*i+"deg)  translateX("+dis+"px)" ;
-        }
-    };
-    /*
-    * 旋转指定“圆圈”指定度数
-    * */
-    let rotateTag = (tag , deg) => {
-        tag.style.transform = "rotate("+deg+"deg)";
-    };
- 
-    let timeRun = () => {
-        initRili(); // 初始化日历
- 
-        setInterval(() => {
-            let mydate = new Date();
-            showNow( mydate ); // 展示当前时间
-        },1000);
- 
-        //  n秒后，摆出圆形
-        setTimeout(() => {
-            wrapper.className = "wrapper";
-            textRound(monthBox,12,40*0.8);
-            textRound(dateBox,31,80*0.8);
-            textRound(hourbox,24,120*0.8);
-            textRound(minutebox,60,160*0.8);
-            textRound(secondbox,60,200*0.8);
+        let changeTime = (tag) => {
+            tag.className = "on";
+            removeSiblingClass(tag);
+        };
+
+        /*
+        * 初始化日历函数
+        * */
+        let initRili = () => {
+            initMonth(); // 初始化月份
+            initDate(); // 初始化日期
+            initHour(); // 小时
+            initMinute();
+            initSecond();
+        };
+
+        /*
+        * 展示当前时间
+        * 参数：mydate 时间对象
+        * */
+        let showNow = (mydate) => {
+
+            let month = mydate.getMonth();
+            let date = mydate.getDate();
+            let hour = mydate.getHours();
+            let minute = mydate.getMinutes();
+            let second = mydate.getSeconds();
+            // 时间文字样式切换函数
+            changeTime(monthBox.children[month]);
+            changeTime(dateBox.children[date - 1]);
+            changeTime(hourbox.children[hour]);
+            changeTime(minutebox.children[minute]);
+            changeTime(secondbox.children[second]);
+
+        };
+
+        // 展示时间圆圈函数
+        // tag：目标
+        // num：数字数量
+        // dis：圆圈半径
+        let textRound = (tag, num, dis) => {
+            let span = tag.children;
+            for (let i = 0; i <= span.length - 1; i++) {
+                span[i].style.transform = "rotate(" + (360 / span.length) * i + "deg)  translateX(" + dis + "px)";
+            }
+        };
+        /*
+        * 旋转指定“圆圈”指定度数
+        * */
+        let rotateTag = (tag, deg) => {
+            tag.style.transform = "rotate(" + deg + "deg)";
+        };
+
+        let timeRun = () => {
+            initRili(); // 初始化日历
+
             setInterval(() => {
                 let mydate = new Date();
-                rotateTag( monthBox , -30*mydate.getMonth());
-                rotateTag( dateBox , -360/31*(mydate.getDate()-1) );
-                rotateTag( hourbox , -360/24*mydate.getHours());
-                rotateTag( minutebox , -6*mydate.getMinutes());
-                rotateTag( secondbox , -6*mydate.getSeconds());
-            },1000)
-        },0)
-    };
-    timeRun();
-</script>
- 
+                showNow(mydate); // 展示当前时间
+            }, 1000);
+
+            //  n秒后，摆出圆形
+            setTimeout(() => {
+                wrapper.className = "wrapper";
+                textRound(monthBox, 12, 40 * 0.8);
+                textRound(dateBox, 31, 80 * 0.8);
+                textRound(hourbox, 24, 120 * 0.8);
+                textRound(minutebox, 60, 160 * 0.8);
+                textRound(secondbox, 60, 200 * 0.8);
+                setInterval(() => {
+                    let mydate = new Date();
+                    rotateTag(monthBox, -30 * mydate.getMonth());
+                    rotateTag(dateBox, -360 / 31 * (mydate.getDate() - 1));
+                    rotateTag(hourbox, -360 / 24 * mydate.getHours());
+                    rotateTag(minutebox, -6 * mydate.getMinutes());
+                    rotateTag(secondbox, -6 * mydate.getSeconds());
+                }, 1000)
+            }, 0)
+        };
+        timeRun();
+    </script>
+
 </body>
+
 </html>
 
 
+<!--<img class="article-type-img" src="/pages/使用/IMG_5079.jpg" alt="">-->
+
+<!-- controls autoplay="autoplay" -->
+<audio id="field1" preload="auto">
+    <source src="/pages/使用/讲解.mp3">
+    <!-- <source src="讲解.mp3" type="audio/mpeg"> -->
+</audio>
+
+<!-- loop -->
+<audio id="field2" preload="auto" autoplay>
+    <!-- <source src="/pages/使用/后来.mp3">
+      <source src="后来.mp3" type="audio/mpeg"> -->
+</audio>
+
+<script type="text/javascript">
+
+var audio1 = document.getElementById("field1");
+    audio1.addEventListener('ended', copyText);
+
+    function copyText() {
+
+        // if (document.getElementById("field1").paused) {
+        //     document.getElementById("field1").play();
+        //     // document.getElementById("field2").volume = 0.2;
+        //     document.getElementById("field2").pause();
+        // } else {
+            document.getElementById("field1").pause();
+            document.getElementById("field2").play();
+        // }
+
+        // if(document.getElementById("field2").paused){
+        //     document.getElementById("field2").play();
+        // }else{
+        //     document.getElementById("field2").pause();
+        // }
+
+    }
+
+    debugger;
+    var vList = [
+        '/pages/使用/泡沫(说唱版) - 小猫多鱼.mp3',
+        '/pages/使用/Dear John - 比莉.mp3',
+        '/pages/使用/nuofa.mp3',
+        '/pages/使用/后来.mp3'];
+    // var vList = [ '后来.mp3', 'nuofa.mp3' ];// 初始化播放列表 var
+    vLen = vList.length; // 播放列表的长度
+    var curr = 0; // 当前播放的视频 
+    var audio2 = document.getElementById("field2");
+
+    audio2.addEventListener('ended', play);
+    play();
+    function play() {
+        
+        audio2.src = vList[curr];
+        audio2.load(); //如果短的话，可以加载完成之后再播放，监听 canplaythrough 事件即可
+        audio2.play();
+        curr++;
+        if (curr >= vLen){
+            curr = 0; // 播放完了，重新播放
+        }
+          
+
+        document.getElementById("field1").play();
+        document.getElementById("field2").pause();   
+  
+    }
+
+
+    function copyText2() {
+
+        if (document.getElementById("field2").paused) {
+            play()
+        } else {
+            document.getElementById("field2").pause();
+        }
+
+    }
+
+</script>
 
 
 
@@ -743,4 +761,3 @@
 <!--</head>-->
 <!--<body>-->
 <!--<canvas id="stars"></canvas>-->
- 
