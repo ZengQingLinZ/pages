@@ -9,13 +9,13 @@
                 document.getElementById("field1").pause();
             }
 
-            if(document.getElementById("field2").paused){
-                document.getElementById("field2").play();
-            }else{
-                document.getElementById("field2").pause();
-            }
+            // if(document.getElementById("field2").paused){
+            //     document.getElementById("field2").play();
+            // }else{
+            //     document.getElementById("field2").pause();
+            // }
 
-            document.getElementById("field2").volume = 0.1;
+            document.getElementById("field2").volume = 0.2;
             
         }
         
@@ -44,12 +44,30 @@
 </audio>
 
 <!-- loop -->
-<audio id="field2"    preload="auto">
-    var
-    <source src="/pages/使用/后来.mp3">
-    <!-- <source src="后来.mp3" type="audio/mpeg"> -->
-  </audio>
+<audio id="field2"    preload="auto" autoplay>
+    <!-- <source src="/pages/使用/后来.mp3">
+    <source src="后来.mp3" type="audio/mpeg"> -->
+ </audio>
 
+ <script type="text/javascript">
+ debugger;
+                var vList = [ '/pages/使用/nuofa.mp3', '/pages/使用/nuofa.mp3' ]; 
+                //var vList = [ '后来.mp3', 'nuofa.mp3' ];// 初始化播放列表 var
+                vLen = vList.length; // 播放列表的长度
+                var curr = 0; // 当前播放的视频 
+                var audio = document.getElementById("field2");
+                audio.addEventListener('ended', play);
+                play();
+                function play() {
+
+                    audio.src = vList[curr];
+                    audio.load(); //如果短的话，可以加载完成之后再播放，监听 canplaythrough 事件即可
+                    audio.play();
+                    curr++;
+                    if (curr >= vLen)
+                        curr = 0; // 播放完了，重新播放
+                }
+</script>
 
 <meta charset="UTF-8" />
 
