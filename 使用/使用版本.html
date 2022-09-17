@@ -19,16 +19,7 @@
 
         }
 
-        function copyText2()
-        {
-
-            if(document.getElementById("field2").paused){
-                document.getElementById("field2").play();
-            }else{
-                document.getElementById("field2").pause();
-            }
-
-        }
+    
         
     </script>
 
@@ -78,6 +69,18 @@
                     if (curr >= vLen)
                         curr = 0; // 播放完了，重新播放
                 }
+
+        function copyText2()
+        {
+            if(document.getElementById("field2").paused){
+                audio.src = vList[curr];
+                document.getElementById("field2").play();
+               
+            }else{
+                document.getElementById("field2").pause();
+            }
+
+        }
 </script>
 
 <meta charset="UTF-8" />
