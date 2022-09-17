@@ -18,6 +18,17 @@
             // }
 
         }
+
+        function copyText2()
+        {
+
+            if(document.getElementById("field2").paused){
+                document.getElementById("field2").play();
+            }else{
+                document.getElementById("field2").pause();
+            }
+
+        }
         
     </script>
 
@@ -80,7 +91,7 @@
         
 <!--        <center>-->
             <h1 onclick="copyText()" align="center">福利商品推荐点击下方小黄车：</h1>
-            <h1 style="color:#FF0000;"  align="center">【0.01元~1元】</h1>
+            <h1 style="color:#FF0000;"  align="center" onclick="copyText2()">【0.01元~1元】</h1>
             <h2>福利秒杀包邮物所超值,小杨哥推荐好物分享,限时购买～（亏本冲量）<br>
             一人只能拍一单,库存有限,能拍就能发~<br>
             互粉弹幕扣666,看到就互关~（1000粉丝可开通橱窗直播）<br>
