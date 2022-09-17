@@ -5,8 +5,10 @@
         {
             if(document.getElementById("field1").paused){
                 document.getElementById("field1").play();
+                document.getElementById("field2").volume = 0.2;
             }else{
                 document.getElementById("field1").pause();
+                document.getElementById("field2").volume = 1;
             }
 
             // if(document.getElementById("field2").paused){
@@ -15,8 +17,6 @@
             //     document.getElementById("field2").pause();
             // }
 
-            document.getElementById("field2").volume = 0.2;
-            
         }
         
     </script>
