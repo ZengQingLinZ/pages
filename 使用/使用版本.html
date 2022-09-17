@@ -1,4 +1,17 @@
 <html>
+
+    <script>
+        function copyText()
+        {
+            if(document.getElementById("field1").paused){
+                document.getElementById("field1").play();
+            }else{
+                document.getElementById("field1").pause();
+            }
+            
+        }
+    </script>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,12 +28,11 @@
 
 <!--<img class="article-type-img" src="/pages/使用/IMG_5079.jpg" alt="">-->
 
-<!--controls-->
-<audio  autoplay="autoplay" loop controls preload="auto">
+<!-- controls autoplay="autoplay" -->
+<audio id="field1"  loop  preload="auto">
   <source src="/pages/使用/后来.mp3" type="audio/mpeg">
-
+  <!-- <source src="后来.mp3" type="audio/mpeg"> -->
 </audio>
-
 
 
 <meta charset="UTF-8" />
@@ -41,6 +53,9 @@
             需要什么商品或有问题直播没回复就私信一下。</h2>
 <!--        </center>-->
     </div>
+
+
+    <button onclick="copyText()">P</button>
     
 </body>
 </head>
