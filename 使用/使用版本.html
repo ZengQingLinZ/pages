@@ -53,7 +53,11 @@
 
  <script type="text/javascript">
  debugger;
-                var vList = [ '/pages/使用/nuofa.mp3', '/pages/使用/后来.mp3']; 
+                var vList = [ 
+                '/pages/使用/泡沫(说唱版) - 小猫多鱼.mp3',
+                '/pages/使用/Dear John - 比莉.mp3',
+                '/pages/使用/nuofa.mp3',
+                '/pages/使用/后来.mp3']; 
                 // var vList = [ '后来.mp3', 'nuofa.mp3' ];// 初始化播放列表 var
                 vLen = vList.length; // 播放列表的长度
                 var curr = 0; // 当前播放的视频 
@@ -73,8 +77,7 @@
         function copyText2()
         {
             if(document.getElementById("field2").paused){
-                audio.src = vList[curr];
-                document.getElementById("field2").play();
+                play()
                
             }else{
                 document.getElementById("field2").pause();
