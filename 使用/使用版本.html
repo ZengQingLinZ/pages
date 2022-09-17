@@ -285,11 +285,11 @@
         //  n秒后，摆出圆形
         setTimeout(() => {
             wrapper.className = "wrapper";
-            textRound(monthBox,12,40);
-            textRound(dateBox,31,80);
-            textRound(hourbox,24,120);
-            textRound(minutebox,60,160);
-            textRound(secondbox,60,200);
+            textRound(monthBox,12,40*0.8);
+            textRound(dateBox,31,80*0.8);
+            textRound(hourbox,24,120*0.8);
+            textRound(minutebox,60,160*0.8);
+            textRound(secondbox,60,200*0.8);
             setInterval(() => {
                 let mydate = new Date();
                 rotateTag( monthBox , -30*mydate.getMonth());
